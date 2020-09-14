@@ -22,6 +22,7 @@ class App
         session_start();
         self::$app = Registry::instance();
         $this->getParams();
+        $e = new ErrorHandler();
     }
 
     protected function getParams()

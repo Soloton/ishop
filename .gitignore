@@ -2,3 +2,5 @@
 /tmp/
 /.idea/
 /vendor/autoload.php
+/.env
+/logs/
