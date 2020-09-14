@@ -1,0 +1,46 @@
+version: '3'
+services:
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+      args:
+        - USER_ID
+        - GROUP_ID
+    volumes:
+      - ./:/var/www
+    environment:
+      XDEBUG_CONFIG: "remote_host=192.168.223.1 remote_enable=1 remote_autostart=off  remote_port=9008"
+      PHP_IDE_CONFIG: "serverName=php-fpm"
+    networks:
+      - internal
+  web:
+    image: nginx
+    volumes:
+      - ./docker/nginx/hosts:/etc/nginx/conf.d
+      - ./:/var/www
+      - ./logs:/var/log/nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - php-fpm
+    links:
+      - php-fpm
+    networks:
+      internal:
+#    mysql:
+#      image: mysql:5.7
+#      ports:
+#        - "3306:3306"
+#      volumes:
+#        - ./mysql/data:/var/lib/mysql
+#      environment:
+#        MYSQL_ROOT_PASSWORD: secret
+#      networks:
+#        - test-network
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.223.0/28
