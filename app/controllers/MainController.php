@@ -8,7 +8,7 @@ class MainController extends AppController
 {
     public function indexAction()
     {
-        debug($this->route);
+//        debug($this->route);
 
     }
 }
