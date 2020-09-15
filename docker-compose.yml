@@ -26,17 +26,31 @@ services:
     links:
       - php-fpm
     networks:
-      internal:
-#    mysql:
-#      image: mysql:5.7
-#      ports:
-#        - "3306:3306"
-#      volumes:
-#        - ./mysql/data:/var/lib/mysql
-#      environment:
-#        MYSQL_ROOT_PASSWORD: secret
-#      networks:
-#        - test-network
+      - internal
+  mariadb:
+    image: mariadb:10.5
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - internal
+  phpmyadmin:
+    image: phpmyadmin
+    links:
+      - mariadb:db
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    depends_on:
+      - mariadb
+    networks:
+      - internal
 networks:
   internal:
     driver: bridge
