@@ -8,4 +8,4 @@ require_once CONF . '/routes.php';
 
 new App();
 
-debug(\ishop\Router::getRoutes());
+
