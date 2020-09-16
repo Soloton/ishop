@@ -4,8 +4,8 @@ services:
     build:
       context: ./docker/php-fpm
       args:
-        - USER_ID
-        - GROUP_ID
+        - USER_ID=${USER_ID}
+        - GROUP_ID=${GROUP_ID}
     volumes:
       - ./:/var/www
     environment:
@@ -33,7 +33,7 @@ services:
     volumes:
       - ./data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: secret
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     networks:
       - internal
   phpmyadmin:
@@ -46,7 +46,9 @@ services:
     volumes:
       - /sessions
     environment:
-      MYSQL_ROOT_PASSWORD: secret
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - PMA_USER=${DB_USERNAME}
+      - PMA_PASSWORD=${DB_PASSWORD}
     depends_on:
       - mariadb
     networks:
