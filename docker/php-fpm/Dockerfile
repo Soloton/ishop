@@ -15,6 +15,7 @@ RUN set -xe && \
         docker-php-ext-enable xdebug && \
         docker-php-source delete && \
         apk del .build-deps && \
+        docker-php-ext-install pdo pdo_mysql && \
         php -v && \
         php -m
 

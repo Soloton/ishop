@@ -1,7 +1,7 @@
-/vendor/composer
 /tmp/
 /.idea/
 /vendor/autoload.php
 /.env
 /logs/
 /data/
+
