@@ -1,0 +1,3 @@
+[submodule "public/megamenu"]
+	path = public/megamenu
+	url = https://github.com/marioloncarek/megamenu-js.git
