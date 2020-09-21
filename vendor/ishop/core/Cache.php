@@ -3,9 +3,18 @@
 
 namespace ishop;
 
-
+/**
+ * Class Cache
+ * @package ishop
+ */
 class Cache
 {
+    /**
+     * @param $key
+     * @param $data
+     * @param int $seconds
+     * @return bool
+     */
     public static function set($key, $data, $seconds = 3600)
     {
         if ($seconds) {
@@ -18,6 +27,10 @@ class Cache
         return false;
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     */
     public static function get($key)
     {
         $file = self::getCacheFileName($key);
@@ -31,6 +44,9 @@ class Cache
         false;
     }
 
+    /**
+     * @param $key
+     */
     public static function delete($key)
     {
         $file = self::getCacheFileName($key);

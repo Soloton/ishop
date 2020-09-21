@@ -41,6 +41,7 @@
 <!--about-end-->
 <!--product-starts-->
 <?php if ($hits): ?>
+    <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
     <div class="product">
         <div class="container">
             <div class="product-top">
@@ -56,10 +57,10 @@
                                     <p>Explore Now</p>
                                     <h4><a class="add-to-card-link"
                                            href="cart/add?id=<?php echo $hit->id; ?>"><i></i></a> <span
-                                                class=" item_price">$ <?php echo $hit->price; ?></span>
+                                                class=" item_price"><?php echo $curr['symbol_left'] . '&nbsp;'; ?><?php echo $hit->price * $curr['value']; ?><?php echo '&nbsp;' . $curr['symbol_right']; ?></span>
                                         <?php if ($hit->old_price): ?>
                                             <small>
-                                                <del><?php echo $hit->old_price; ?></del>
+                                                <del><?php echo $curr['symbol_left'] . '&nbsp;'; ?><?php echo $hit->old_price * $curr['value']; ?><?php echo '&nbsp;' . $curr['symbol_right']; ?></del>
                                             </small>
                                         <?php endif; ?>
                                     </h4>
