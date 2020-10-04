@@ -4,6 +4,8 @@
 namespace ishop;
 
 
+use Exception;
+
 /**
  * Class App
  * @package ishop

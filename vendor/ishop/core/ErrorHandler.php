@@ -4,6 +4,8 @@
 namespace ishop;
 
 
+use Exception;
+
 /**
  * Class ErrorHandler
  * @package ishop
@@ -21,7 +23,7 @@ class ErrorHandler
     }
 
     /**
-     * @param $e \Exception
+     * @param $e Exception
      */
     public function exceptionHandler($e)
     {

@@ -10,7 +10,7 @@ namespace ishop;
  */
 class Registry
 {
-    use TSingletone;
+    use TSingleton;
 
     /**
      * @var array

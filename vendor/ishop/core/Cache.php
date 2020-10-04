@@ -41,7 +41,7 @@ class Cache
             }
             unlink($file);
         }
-        false;
+        return false;
     }
 
     /**

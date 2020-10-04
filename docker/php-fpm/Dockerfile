@@ -3,21 +3,17 @@ FROM php:7.4-fpm-alpine
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 
-# install xdebug
-RUN set -xe && \
-        docker-php-source extract && \
-        apk add --no-cache --virtual .build-deps \
-            autoconf \
-            g++ \
-            make \
-        && \
-        pecl install xdebug && \
-        docker-php-ext-enable xdebug && \
-        docker-php-source delete && \
-        apk del .build-deps && \
-        docker-php-ext-install pdo pdo_mysql && \
-        php -v && \
-        php -m
+
+ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
+
+RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
+    install-php-extensions \
+        http \
+        pdo_mysql \
+        xdebug \
+    && \
+    php -v && \
+    php -m
 
 #COPY docker-xdebug-* /usr/local/bin/
 

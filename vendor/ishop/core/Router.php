@@ -4,6 +4,8 @@
 namespace ishop;
 
 
+use Exception;
+
 class Router
 {
     protected static $routes = [];
@@ -36,7 +38,7 @@ class Router
 
     /**
      * @param $url
-     * @throws \Exception
+     * @throws Exception
      */
     public static function dispatch($url)
     {
@@ -50,13 +52,13 @@ class Router
                     $controllerObject->$action();
                     $controllerObject->getView();
                 } else {
-                    throw new \Exception("Метод $controller::$action не найден", 404);
+                    throw new Exception("Метод $controller::$action не найден", 404);
                 }
             } else {
-                throw new \Exception("Контроллер $controller не найден", 404);
+                throw new Exception("Контроллер $controller не найден", 404);
             }
         } else
-            throw new \Exception("Страница не найдена", 404);
+            throw new Exception("Страница не найдена", 404);
     }
 
     /**
@@ -116,5 +118,6 @@ class Router
                 return '';
             }
         }
+        return '';
     }
 }

@@ -5,10 +5,10 @@ namespace ishop;
 
 
 /**
- * Trait TSingletone
+ * Trait TSingleton
  * @package ishop
  */
-trait TSingletone
+trait TSingleton
 {
     /**
      * @var
@@ -16,7 +16,7 @@ trait TSingletone
     private static $instance;
 
     /**
-     * @return TSingletone
+     * @return TSingleton
      */
     public static function instance()
     {
