@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
     <base href="/">
     <?php echo $this->getMeta(); ?>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
     <!--Custom-Theme-files-->
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
     <link href="megamenu/css/ionicons.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -45,12 +45,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="col-md-6 top-header-left">
                 <div class="cart box_1">
-                    <a href="checkout.html">
+                    <a href="cart/show" onclick="getCart(); return false;">
                         <div class="total">
-                            <span class="simpleCart_total"></span></div>
-                        <img src="images/cart-1.png" alt=""/>
+                            <img src="images/cart-1.png" alt=""/>
+                            <?php if (!empty($_SESSION['cart'])) : ?>
+                                <span class="simpleCart_total"><?php echo $_SESSION['cart.currency']['symbol_left'] . ' ' ?><?php echo $_SESSION['cart.sum']; ?><?php echo ' ' . $_SESSION['cart.currency']['symbol_right']; ?></span>
+                            <?php else: ?>
+                                <span class="simpleCart_total">Empty Cart</span>
+                            <?php endif; ?>
+                        </div>
                     </a>
-                    <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                    <!--                    <a href="checkout.html">-->
+                    <!--                        <div class="total">-->
+                    <!--                            <span class="simpleCart_total"></span></div>-->
+                    <!--                        <img src="images/cart-1.png" alt=""/>-->
+                    <!--                    </a>-->
+
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -91,6 +101,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <!--bottom-header-->
 <div class="content">
+<?php
+//session_destroy();
+?>
     <?php echo $content; ?>
 </div>
 <!--information-starts-->
@@ -158,6 +171,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
 </div>
 <!--footer-end-->
+
+<!-- Modal -->
+<div class="modal fade" id="cart" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Корзина</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+                <a href="cart/view" type="button" class="btn btn-primary">Оформить заказ </a>
+                <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <?php $NBSP = '&nbsp;'; ?>
 <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
 <script>
@@ -167,7 +202,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         symbolRight = '<?php echo $curr['symbol_right'];?>';
 </script>
 <script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/simpleCart.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!--dropdown-->
 <script src="js/jquery.easydropdown.js"></script>
 <script src="js/responsiveslides.min.js"></script>

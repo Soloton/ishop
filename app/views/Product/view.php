@@ -56,11 +56,11 @@
                             <h5 class="item_price">
                                 <div id="base-price"
                                      data-base="<?php echo $product->price * $curr['value']; ?>"
-                                     style="display: inline-block;"><?php echo $curr['symbol_left'] . ' ' ?><?php echo $product->price * $curr['value']; ?><?php echo ' '. $curr['symbol_right']; ?></div>
+                                     style="display: inline-block;"><?php echo $curr['symbol_left'] . ' ' ?><?php echo $product->price * $curr['value']; ?><?php echo ' ' . $curr['symbol_right']; ?></div>
                                 <?php if ($product->old_price): ?>
                                     <div id="old-price" data-base="<?php echo $product->old_price * $curr['value']; ?>"
                                          style="display: inline-block; font-size: smaller; text-decoration: line-through">
-                                        <?php echo $curr['symbol_left'] . ' ' ?><?php echo $product->old_price * $curr['value']; ?><?php echo ' '. $curr['symbol_right']; ?>
+                                        <?php echo $curr['symbol_left'] . ' ' ?><?php echo $product->old_price * $curr['value']; ?><?php echo ' ' . $curr['symbol_right']; ?>
                                     </div>
                                 <?php endif; ?>
                             </h5>
@@ -69,21 +69,23 @@
                                 <?php echo $product->content; ?>
 
                             </p>
-                            <div class="available">
-                                <ul>
-                                    <li>Color
-                                        <select>
-                                            <option>Выбрать цвет</option>
-                                            <?php foreach ($mods as $mod): ?>
-                                                <option data-title="<?php echo $mod->title; ?>"
-                                                        data-price="<?php echo $mod->price * $curr['value']; ?>"
-                                                        data-old-price="<?php echo $product->old_price * $curr['value']; ?>"
-                                                        value="<?php echo $mod->id; ?>"><?php echo $mod->title; ?></option>
-                                            <?php endforeach; ?>
-                                        </select></li>
-                                    <div class="clearfix"></div>
-                                </ul>
-                            </div>
+                            <?php if ($mods): ?>
+                                <div class="available">
+                                    <ul>
+                                        <li>Color
+                                            <select>
+                                                <option>Выбрать цвет</option>
+                                                <?php foreach ($mods as $mod): ?>
+                                                    <option data-title="<?php echo $mod->title; ?>"
+                                                            data-price="<?php echo $mod->price * $curr['value']; ?>"
+                                                            data-old-price="<?php echo $product->old_price * $curr['value']; ?>"
+                                                            value="<?php echo $mod->id; ?>"><?php echo $mod->title; ?></option>
+                                                <?php endforeach; ?>
+                                            </select></li>
+                                        <div class="clearfix"></div>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
                             <ul class="tag-men">
                                 <li><span>Category</span>
                                     <span class="women1">: <a
@@ -192,12 +194,12 @@
                                                 <a href="product/<?php echo $item['alias']; ?>"><?php echo $item['title']; ?></a>
                                             </h3>
                                             <p>Explore Now</p>
-                                            <h4><a class="item_add add-to-card-link"
-                                                   href="card/add?id=<?php echo $item['id']; ?>"
+                                            <h4><a class="item_add add-to-cart-link"
+                                                   href="cart/add?id=<?php echo $item['id']; ?>"
                                                    data-id="<?php echo $item['id']; ?>"><em></em></a>
-                                                <span class="item_price"><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['price'] * $curr['value']; ?><?php echo ' '. $curr['symbol_right']; ?></span>
+                                                <span class="item_price"><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['price'] * $curr['value']; ?><?php echo ' ' . $curr['symbol_right']; ?></span>
                                                 <?php if ($item['old_price']): ?>
-                                                    <del><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['old_price'] * $curr['value']; ?><?php echo ' '. $curr['symbol_right']; ?></del>
+                                                    <del><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['old_price'] * $curr['value']; ?><?php echo ' ' . $curr['symbol_right']; ?></del>
                                                 <?php endif; ?>
                                             </h4>
                                         </div>
@@ -228,12 +230,12 @@
                                                 <a href="product/<?php echo $item['alias']; ?>"><?php echo $item['title']; ?></a>
                                             </h3>
                                             <p>Explore Now</p>
-                                            <h4><a class="item_add add-to-card-link"
-                                                   href="card/add?id=<?php echo $item['id']; ?>"
+                                            <h4><a class="item_add add-to-cart-link"
+                                                   href="cart/add?id=<?php echo $item['id']; ?>"
                                                    data-id="<?php echo $item['id']; ?>"><em></em></a>
-                                                <span class="item_price"><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['price'] * $curr['value']; ?><?php echo ' '. $curr['symbol_right']; ?></span>
+                                                <span class="item_price"><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['price'] * $curr['value']; ?><?php echo ' ' . $curr['symbol_right']; ?></span>
                                                 <?php if ($item['old_price']): ?>
-                                                    <del><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['old_price'] * $curr['value']; ?><?php echo ' '. $curr['symbol_right']; ?></del>
+                                                    <del><?php echo $curr['symbol_left'] . ' ' ?><?php echo $item['old_price'] * $curr['value']; ?><?php echo ' ' . $curr['symbol_right']; ?></del>
                                                 <?php endif; ?>
                                             </h4>
                                         </div>

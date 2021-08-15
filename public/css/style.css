@@ -3076,3 +3076,11 @@ ul.tag-men {
 	float: left;
 	font-size: 1.15em;
 }
+
+#cart table img	{
+	height: 50px;
+}
+
+.del-item {
+	cursor: pointer;
+}
